@@ -5,6 +5,9 @@
 % Name: Retselis Anastasios - Faidon
 % AEM: 14648
 % Developed using MATLAB R2018a
+% Requires function WindRose.m to run
+
+clear;
 
 % Data Input and column declaration
 
@@ -41,7 +44,7 @@ Options.TitleString = {sprintf('Wind Rose for the time period %i - %i',year1,yea
 
 % Create wind rose diagram
 
-WindRose (wind_direction,wind_speed,Options) % Call the Wind Rose function to create the diagram
+WindRose (wind_direction,wind_speed,Options); % Call the Wind Rose function to create the diagram
 
 % Bins definition
 
@@ -79,7 +82,7 @@ end
 [~,idx] = max(counts); % Identify bin which contains the maximum 
 max_interval = (centers(idx,:)) + (bins_width/2); % Define max of corresponding bin
 min_interval = (centers(idx,:)) - (bins_width/2); % Define min of corresponding bin
-sprintf('Dominant wind direction in bin (%f,%f) with center %f (degrees) for month %d in interval %d - %d', min_interval,max_interval,centers(idx,:),month,year1,year1+4)
+fprintf('Dominant wind direction in bin (%f,%f) with center %f (degrees) for month %d in interval %d - %d\n', min_interval,max_interval,centers(idx,:),month,year1,year1+4)
 
 % July direction
 
@@ -101,7 +104,7 @@ for i = 0:4 % i=0 since we begin counting our 5-year period from year1
     i_pos = f_pos;
 end
 
-% hist(jul_direction,bins); % To be used for visualization only (Disable WindRose first)
+% hist(jul_direction,bins); % To be used for visualization purposes (Disable WindRose first)
 
 % Calculate dominant wind direction
 
@@ -109,4 +112,4 @@ end
 [val,idx] = max(counts); % Identify bin which contains the maximum 
 max_interval = (centers(idx,:)) + (bins_width/2); % Define max of corresponding bin
 min_interval = (centers(idx,:)) - (bins_width/2); % Define min of corresponding bin
-sprintf('Dominant wind direction in bin (%f,%f) with center %f (degrees) for month %d in interval %d - %d', min_interval,max_interval,centers(idx,:),month,year1,year1+4)
+fprintf('Dominant wind direction in bin (%f,%f) with center %f (degrees) for month %d in interval %d - %d\n', min_interval,max_interval,centers(idx,:),month,year1,year1+4)
